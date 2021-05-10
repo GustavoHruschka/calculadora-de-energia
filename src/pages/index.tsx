@@ -1,11 +1,12 @@
-import React, { ButtonHTMLAttributes, useState } from 'react'
+import React, { useState } from 'react'
+import Head from 'next/head'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import timeStringToHours from '../utils/timeStringToHours'
 import formatNumberAsCurrencyString from '../utils/formatNumberAsCurrencyString'
 
 function Home() {
-  const [isResultHidden, SetIsResultHidden] = useState(true)
+  const [isResultHidden, setIsResultHidden] = useState(true)
   const [devicePower, setDevicePower] = useState(0)
   const [dailyUseHours, setDailyUseHours] = useState('00:00')
   const [energyPrice, setEnergyPrice] = useState(0.58)
@@ -18,7 +19,8 @@ function Home() {
 
   function handleSubmit(event: React.FormEvent<HTMLButtonElement>) {
     event.preventDefault()
-    SetIsResultHidden(false)
+
+    setIsResultHidden(false)
   }
 
   function handleDevicePowerChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -43,6 +45,10 @@ function Home() {
 
   return (
     <div className="app-container">
+      <Head>
+        <title>Elektrômetro</title>
+      </Head>
+
       <header className="page-header">
         <h1 className="page-title">Elektrômetro</h1>
         <h2 className="page-subtitle">Quanto gasto por aparelho?</h2>
@@ -77,7 +83,7 @@ function Home() {
           </label>
 
           <div className="explanations">
-            <p>A quantidade de horas diárias que o aparelho é usado. Geralmente, o aparelhos em modo stand-by não gastam quantidades consideráveis de energia.</p>
+            <p>A quantidade de horas diárias que o aparelho é usado. Geralmente, aparelhos em modo stand-by não gastam quantidades consideráveis de energia.</p>
             <p><strong>Por exemplo:</strong> Uma TV ligada à tomada <strong>não</strong> gasta energia considerável se não estiver em uso.</p>
           </div>
 
